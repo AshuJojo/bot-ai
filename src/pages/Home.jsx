@@ -1,8 +1,10 @@
+import { Stack, Typography } from "@mui/material"
+
 const Home = () => {
   return (
-    <>
-      <h1>Home</h1>
-    </>
+    <Stack sx={{mx: 2}}>
+      <Typography variant="h2">Home</Typography>
+    </Stack>
   )
 }
 

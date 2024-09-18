@@ -8,9 +8,9 @@ import Typography from '@mui/material/Typography';
 import { useState } from 'react';
 import { GiHamburgerMenu } from 'react-icons/gi';
 
-const drawerWidth = 240;
 
 function Navbar({ children }) {
+    const drawerWidth = 240;
     const [mobileOpen, setMobileOpen] = useState(false);
     const [isClosing, setIsClosing] = useState(false);
 
@@ -32,7 +32,6 @@ function Navbar({ children }) {
     const drawer = (
         <div>
             <Toolbar />
-
         </div>
     );
 
@@ -94,7 +93,7 @@ function Navbar({ children }) {
             </Box>
             <Box
                 component="main"
-                sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` } }}
+                sx={{ flexGrow: 1, width: { sm: `calc(100% - ${drawerWidth}px)` } }}
             >
                 <Toolbar />
                 {children}

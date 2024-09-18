@@ -55,6 +55,6 @@ h6 {
 #root,
 #__next {
   isolation: isolate;
-  height: 100%;
+  min-height: 100%;
   background: linear-gradient(180deg, rgba(215, 199, 244, 0.2) 0%, rgba(151, 133, 186, 0.2) 100%);
 }

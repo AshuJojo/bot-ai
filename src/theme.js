@@ -10,7 +10,7 @@ const theme = createTheme({
         },
         secondary: {
             main: '#D7C7F4',
-            contrastText: '#FFFFFF',
+            contrastText: '#000000',
         }
     },
     typography: {
@@ -34,7 +34,19 @@ const theme = createTheme({
             fontSize: '16px',
             lineHeight: 1.362,
         }
-    },
+    }
 });
+
+theme.components.MuiButton = {
+    defaultProps: {
+        variant: 'contained'
+    },
+    styleOverrides: {
+        contained: {
+            backgroundColor: theme.palette.secondary.main,
+            color: theme.palette.secondary.contrastText
+        }
+    }
+}
 
 export default responsiveFontSizes(theme);
