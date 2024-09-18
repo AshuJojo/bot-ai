@@ -11,6 +11,7 @@ function App() {
         <Box sx={{
           display: 'flex',
           flexDirection: 'column',
+          minHeight: '90vh'
         }}>
           <Home />
           <QueryForm />

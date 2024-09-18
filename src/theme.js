@@ -29,11 +29,24 @@ const theme = createTheme({
             fontSize: '24px',
             lineHeight: 1.724,
         },
+        h4: {
+            fontSize: '20px',
+            lineHeight: 1.724,
+        },
         body1: {
             fontFamily: 'Open Sans',
             fontSize: '16px',
             lineHeight: 1.362,
         }
+    },
+    breakpoints: {
+        values: {
+            xs: 0,
+            sm: 600,
+            md: 900,
+            lg: 1200,
+            xl: 1536,
+        },
     }
 });
 
