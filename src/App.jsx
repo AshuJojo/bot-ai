@@ -1,10 +1,13 @@
-import { Typography } from "@mui/material"
+import Navbar from "./components/navbar"
+import Home from "./pages/Home"
 
 function App() {
 
   return (
     <>
-      <Typography variant="h1">App</Typography>
+      <Navbar >
+        <Home />
+      </Navbar>
     </>
   )
 }

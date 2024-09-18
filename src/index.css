@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
 
 :root {
-  --color-primary: #9785BA,
+  --color-primary: #9785BA;
   --color-white: #ffffff;
 }
 
@@ -55,4 +55,6 @@ h6 {
 #root,
 #__next {
   isolation: isolate;
+  height: 100%;
+  background: linear-gradient(180deg, rgba(215, 199, 244, 0.2) 0%, rgba(151, 133, 186, 0.2) 100%);
 }
