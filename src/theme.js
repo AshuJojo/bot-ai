@@ -37,6 +37,11 @@ const theme = createTheme({
             fontFamily: 'Open Sans',
             fontSize: '16px',
             lineHeight: 1.362,
+        },
+        body2: {
+            fontFamily: 'Open Sans',
+            fontSize: '12px',
+            lineHeight: 1.362,
         }
     },
     breakpoints: {

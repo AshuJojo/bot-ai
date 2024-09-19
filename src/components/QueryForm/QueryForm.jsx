@@ -1,9 +1,24 @@
 import { Button, Stack, TextField } from "@mui/material";
 import styles from './QueryForm.module.css';
+import { useState } from "react";
 
-const QueryForm = () => {
+const QueryForm = ({ query, setQuery }) => {
+    const [question, setQuestion] = useState('');
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log('form Submitted', question);
+        setQuery({ ...query, question: question });
+        setQuestion('');
+    }
+
+    const handleSave = () => {
+
+    }
+
     return (
         <Stack
+            component={'form'}
             className={styles.container} sx={{
                 width: {
                     xs: '100%',
@@ -12,6 +27,7 @@ const QueryForm = () => {
             }}
             direction='row'
             spacing={2}
+            onSubmit={handleSubmit}
         >
             <TextField
                 variant="outlined"
@@ -22,9 +38,11 @@ const QueryForm = () => {
                         padding: '0.4rem 0.5rem'
                     }
                 }}
+                value={question}
+                onChange={(e) => setQuestion(e.target.value)}
             />
-            <Button>Ask</Button>
-            <Button>Save</Button>
+            <Button type="submit" disabled={!question}>Ask</Button>
+            <Button type="button" onClick={handleSave}>Save</Button>
         </Stack >
     )
 }
