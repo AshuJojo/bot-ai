@@ -11,7 +11,7 @@ const PastConversations = () => {
     <Box sx={{ mx: 2, mb: 10, flexGrow: 1, display: 'flex' }}>
       {
         (pastConversations.length > 0) ?
-          <Stack direction="column" spacing={2}>
+          <Stack direction="column" spacing={2} width='100%'>
             <ChatHistories pastConversations={pastConversations}/>
           </Stack> :
           <Box sx={{ width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>

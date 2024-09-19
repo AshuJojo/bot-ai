@@ -1,9 +1,10 @@
-import { Stack, Typography } from "@mui/material";
+import { Box, FormControl, InputLabel, MenuItem, Select, Stack, Typography } from "@mui/material";
 import { format, isToday, isYesterday } from "date-fns";
 import HistoryCard from "../HistoryCard/HistoryCard";
 import { useEffect, useState } from "react";
 
 const ChatHistories = ({ pastConversations }) => {
+    const [filterRating, setFilterRating] = useState(0);
     const [filteredList, setFilteredList] = useState([]);
     console.log('pastConversations', pastConversations);
 
@@ -25,6 +26,21 @@ const ChatHistories = ({ pastConversations }) => {
         return dateTitle
     }
 
+    const filterConversations = (e) => {
+        const { value } = e.target;
+        if (value === 0) {
+            setFilteredList(pastConversations);
+            return;
+        }
+
+        setFilterRating(value);
+        let data = [...pastConversations];
+
+        data = data.filter((item) => (item.chats[item.chats.length - 1].rating === value));
+
+        setFilteredList(data);
+    }
+
     useEffect(() => {
         const sortedList = pastConversations.sort(
             (a, b) => (
@@ -32,19 +48,38 @@ const ChatHistories = ({ pastConversations }) => {
             )
         );
         setFilteredList(sortedList);
-    }, [pastConversations])
+    }, [pastConversations]);
 
     return (
-        <Stack spacing={4}>
-            
-            {filteredList.map((conversation, idx) => (
-                <Stack direction='column' key={idx} spacing={1}>
+        <Stack spacing={4} sx={{ pt: 4 }}>
+            <FormControl fullWidth>
+                <InputLabel>Filter Rating</InputLabel>
+                <Select
+                    value={filterRating}
+                    label="Filter Rating"
+                    onChange={filterConversations}
+                >
+                    <MenuItem value={0}>All</MenuItem>
+                    <MenuItem value={1}>1 Star</MenuItem>
+                    <MenuItem value={2}>2 Star</MenuItem>
+                    <MenuItem value={3}>3 Star</MenuItem>
+                    <MenuItem value={4}>4 Star</MenuItem>
+                    <MenuItem value={5}>5 Star</MenuItem>
+                </Select>
+            </FormControl>
+            {filteredList.length > 0 && filteredList.map((conversation, idx) => (
+                <Stack key={idx} spacing={1}>
                     <Typography variant="h4" fontWeight={500}>
                         {getChatDateTitle(conversation.timestamp)}
                     </Typography>
                     <HistoryCard chats={conversation.chats} />
                 </Stack>
             ))}
+            {filteredList.length === 0 &&
+                <Box sx={{ display: "flex", justifyContent: 'center', alignItems: 'center' }}>
+                    <Typography variant="h3">No Results Found!</Typography>
+                </Box>
+            }
         </Stack>
     )
 }

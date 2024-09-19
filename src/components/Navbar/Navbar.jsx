@@ -20,7 +20,7 @@ function Navbar({ children }) {
     const drawerWidth = 240;
     const [mobileOpen, setMobileOpen] = useState(false);
     const [isClosing, setIsClosing] = useState(false);
-    const { chats, setChats } = useContext(ChatsContext);
+    const { setChats } = useContext(ChatsContext);
 
     const handleDrawerClose = () => {
         setIsClosing(true);

@@ -33,13 +33,12 @@ const Row = ({ isQuestion, content, rating, time, feedback }) => {
 }
 
 const HistoryCard = ({ chats }) => {
-    
+
     const theme = useTheme();
 
     const formatDate = (dateJSON) => {
         const date = new Date(JSON.parse(`"${dateJSON}"`));
         const formatedDate = format(date, "h:m a")
-        console.log('date', date)
         return formatedDate;
     }
 

@@ -5,6 +5,7 @@ import FeedbackModal from "../FeedbackModal/FeedbackModal";
 
 const ChatCard = ({ isQuestion, content, avatar, time, rating, feedback, handleRating, handleFeedback }) => {
     const [isRatingShown, setIsRatingShown] = useState(false);
+    const [showLikeDislike, setShowLikeDislike] = useState(false);
     const [showFeedbackModal, setShowFeedbackModal] = useState(false);
     const theme = useTheme();
 
@@ -18,7 +19,7 @@ const ChatCard = ({ isQuestion, content, avatar, time, rating, feedback, handleR
             px: 2,
             borderRadius: 3,
             background: alpha(theme.palette.secondary.main, 0.13)
-        }}>
+        }} onMouseEnter={() => { setShowLikeDislike(true) }} onMouseLeave={() => setShowLikeDislike(false)}>
             <Stack direction='row' spacing={2} sx={{ alignItems: 'start' }}>
                 <Avatar
                     src={avatar}
@@ -39,22 +40,27 @@ const ChatCard = ({ isQuestion, content, avatar, time, rating, feedback, handleR
                                     onChange={handleRating}
                                     sx={{ width: 'fit-content', fontSize: 16 }}
                                 />}
-                                <PiThumbsUpBold style={{
-                                    marginBottom: 1,
-                                    fontSize: 16
-                                }} onClick={showRating} />
-                                <PiThumbsUpBold
-                                    style={{
-                                        marginBottom: 1,
-                                        transform: 'scale(-1, -1)',
-                                        fontSize: 16
-                                    }}
-                                    onClick={() => { setShowFeedbackModal(true) }}
-                                />
+                                {showLikeDislike &&
+                                    <>
+
+                                        <PiThumbsUpBold style={{
+                                            marginBottom: 1,
+                                            fontSize: 16
+                                        }} onClick={showRating} />
+                                        <PiThumbsUpBold
+                                            style={{
+                                                marginBottom: 1,
+                                                transform: 'scale(-1, -1)',
+                                                fontSize: 16
+                                            }}
+                                            onClick={() => { setShowFeedbackModal(true) }}
+                                        />
+                                    </>
+                                }
                             </>
                         }
                     </Stack>
-                    {feedback && <Typography sx={{mt: 2}}><span style={{fontWeight: 'bold'}}>Feedback:</span> {feedback}</Typography>}
+                    {feedback && <Typography sx={{ mt: 2 }}><span style={{ fontWeight: 'bold' }}>Feedback:</span> {feedback}</Typography>}
                 </Stack>
             </Stack>
             <FeedbackModal isOpen={showFeedbackModal} handleClose={() => { setShowFeedbackModal(false) }} handleFeedback={handleFeedback} />
