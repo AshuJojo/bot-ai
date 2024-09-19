@@ -6,16 +6,21 @@ import Drawer from '@mui/material/Drawer';
 import IconButton from '@mui/material/IconButton';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import SoulAvatar from '../../assets/images/soul-avatar.png';
 import { TbEdit } from 'react-icons/tb';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { ChatsContext } from '../../context/Contexts';
 
 
 function Navbar({ children }) {
+    const location = useLocation();
+    const navigate = useNavigate();
     const drawerWidth = 240;
     const [mobileOpen, setMobileOpen] = useState(false);
     const [isClosing, setIsClosing] = useState(false);
+    const { chats, setChats } = useContext(ChatsContext);
 
     const handleDrawerClose = () => {
         setIsClosing(true);
@@ -32,6 +37,11 @@ function Navbar({ children }) {
         }
     };
 
+    const openNewChat = () => {
+        setChats([]);
+        navigate('/')
+    }
+
     const drawer = (
         <Box width="100%">
             <Stack direction='row' spacing={1} sx={{
@@ -42,9 +52,9 @@ function Navbar({ children }) {
             }}>
                 <Avatar src={SoulAvatar} alt="Soul Avatar" sx={{ width: 50, height: 50 }} />
                 <Typography variant='h4'>New Chat</Typography>
-                <TbEdit fontSize={24} />
+                <TbEdit fontSize={24} onClick={openNewChat} />
             </Stack>
-            <Box sx={{ m: 1, p: 1, backgroundColor: 'secondary.main', borderRadius: 2 }}>
+            <Box sx={{ m: 1, p: 1, backgroundColor: 'secondary.main', borderRadius: 2 }} onClick={() => { navigate('/past-conversations') }}>
                 <Typography variant='body1' fontWeight={700}>
                     Past Conversations
                 </Typography>
@@ -64,7 +74,7 @@ function Navbar({ children }) {
                     background: 'linear-gradient(180deg, rgb(235 231 243) 0%, rgb(248 244 255) 100%)',
                 }}
             >
-                <Toolbar >
+                <Toolbar>
                     <IconButton
                         color="primary"
                         edge="start"
@@ -73,9 +83,16 @@ function Navbar({ children }) {
                     >
                         <GiHamburgerMenu />
                     </IconButton>
-                    <Typography variant="h2" fontWeight={700} color={'primary'}>
-                        Bot AI
-                    </Typography>
+                    {location.pathname === '/' &&
+                        <Typography variant="h2" fontWeight={700} color={'primary'}>
+                            Bot AI
+                        </Typography>
+                    }
+                    {location.pathname === '/past-conversations' &&
+                        <Typography variant="h2" fontWeight={700} color={'primary'} sx={{ width: '100%', textAlign: 'center' }}>
+                            Conversation History
+                        </Typography>
+                    }
                 </Toolbar>
             </AppBar>
             <Box

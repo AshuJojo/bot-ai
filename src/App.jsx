@@ -4,9 +4,10 @@ import QueryForm from "./components/QueryForm/QueryForm"
 import { useEffect, useState } from "react"
 import { ChatsContext, PastConversionContext, QueriesContext, QueryContext } from "./context/Contexts";
 import data from './data/queries.json';
-import { Outlet } from "react-router-dom"
+import { Outlet, useLocation } from "react-router-dom"
 
 function App() {
+  const location = useLocation();
   const [queries, setQueries] = useState(data || []);
   const [pastConversations, setPastConversations] = useState([]);
 
@@ -82,7 +83,7 @@ function App() {
                   minHeight: '90vh'
                 }}>
                   <Outlet />
-                  <QueryForm query={query} setQuery={setQuery} handleSave={handleSave} />
+                  {location.pathname === '/' && <QueryForm query={query} setQuery={setQuery} handleSave={handleSave} />}
                 </Box>
               </Navbar>
             </QueryContext.Provider>

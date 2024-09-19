@@ -1,6 +1,24 @@
+import { Box, Stack, Typography } from "@mui/material"
+import { useContext } from "react"
+import { PastConversionContext } from "../context/Contexts"
+import { Link } from "react-router-dom";
+import ChatHistories from "../components/ChatHistories/ChatHistories";
+
 const PastConversations = () => {
+  const { pastConversations } = useContext(PastConversionContext);
+
   return (
-    <div>PastConversations</div>
+    <Box sx={{ mx: 2, mb: 10, flexGrow: 1, display: 'flex' }}>
+      {
+        (pastConversations.length > 0) ?
+          <Stack direction="column" spacing={2}>
+            <ChatHistories pastConversations={pastConversations}/>
+          </Stack> :
+          <Box sx={{ width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+            <Typography variant="h4">No Chat Here! Please <Link to="/">Start Your Chat</Link>.</Typography>
+          </Box>
+      }
+    </Box>
   )
 }
 
