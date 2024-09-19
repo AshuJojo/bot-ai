@@ -7,11 +7,13 @@ const theme = createTheme({
             main: '#9785BA',
             light: '#AF9FCD',
             contrastText: '#F9FAFA',
+            error: '#ff6666'
         },
         secondary: {
             main: '#D7C7F4',
+            light: '#FAF7FF',
             contrastText: '#000000',
-        }
+        },
     },
     typography: {
         fontFamily: "Ubuntu, Open Sans",

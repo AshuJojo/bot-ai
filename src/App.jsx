@@ -12,7 +12,9 @@ function App() {
     {
       question: "Hi",
       response: "Hi There. How can I assist you today",
-      time: '10:34 AM'
+      time: '10:34 AM',
+      rating: 0,
+      feedback: ''
     }
   ]);
   const [query, setQuery] = useState({
