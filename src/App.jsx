@@ -1,36 +1,46 @@
-import { Box } from "@mui/material"
+import { Box, CssBaseline } from "@mui/material"
 import Navbar from "./components/Navbar/Navbar"
 import QueryForm from "./components/QueryForm/QueryForm"
-import Home from "./pages/Home"
 import { useEffect, useState } from "react"
-import { QueriesContext } from "./context/Contexts";
+import { ChatsContext, PastConversionContext, QueriesContext, QueryContext } from "./context/Contexts";
 import data from './data/queries.json';
+import { Outlet } from "react-router-dom"
 
 function App() {
   const [queries, setQueries] = useState(data || []);
-  const [chats, setChats] = useState([
-    {
-      question: "Hi",
-      response: "Hi There. How can I assist you today",
-      time: '10:34 AM',
-      rating: 0,
-      feedback: ''
-    }
-  ]);
+  const [pastConversations, setPastConversations] = useState([]);
+
+  const [chats, setChats] = useState([]);
+
   const [query, setQuery] = useState({
     question: '',
     response: '',
   });
+
+  console.log('chats', chats);
+  console.log('pastConversations', pastConversations);
+
   const [isMounted, setIsMounted] = useState(false);
+
+  const handleSave = () => {
+    console.log('save Conversation');
+    const data = [...pastConversations];
+
+    const conversations = { chats, timestamp: new Date().toJSON() };
+    data.push(conversations);
+
+    setPastConversations(data);
+    setChats([]);
+    localStorage.setItem('pastConversations', JSON.stringify(data));
+  }
 
   const getResponse = (que) => {
     const res = queries.find((item) => item.question.toLowerCase() === que.toLowerCase());
 
-
     if (res && res.response) {
       return res.response;
     } else {
-      return 'As an AI Language Model, I don’t have the details';
+      return "As an AI Language Model, I don't have the details";
     }
   }
 
@@ -39,25 +49,45 @@ function App() {
       const res = getResponse(query.question);
       const newQueryObj = { ...query, response: res };
       setQuery(newQueryObj);
-      setChats([...chats, newQueryObj]);
+
+      const newChat = [...chats];
+
+      newChat.push({ ...newQueryObj, time: new Date().toJSON() });
+
+      setChats(newChat);
     }
 
     setIsMounted(true)
-  }, [query.question]);
+  }, [query?.question]);
+
+  useEffect(() => {
+    if (!isMounted) {
+      const persistedConversations = JSON.parse(localStorage.getItem('pastConversations') || '[]');
+
+      setPastConversations(persistedConversations);
+    }
+  }, [])
 
   return (
     <>
       <QueriesContext.Provider value={{ queries, setQueries }}>
-        <Navbar>
-          <Box sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            minHeight: '90vh'
-          }}>
-            <Home chats={chats} setChats={setChats} />
-            <QueryForm query={query} setQuery={setQuery} />
-          </Box>
-        </Navbar>
+        <PastConversionContext.Provider value={{ pastConversations, setPastConversations }}>
+          <ChatsContext.Provider value={{ chats, setChats }}>
+            <QueryContext.Provider value={{ query, setQuery }}>
+              <CssBaseline />
+              <Navbar>
+                <Box sx={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  minHeight: '90vh'
+                }}>
+                  <Outlet />
+                  <QueryForm query={query} setQuery={setQuery} handleSave={handleSave} />
+                </Box>
+              </Navbar>
+            </QueryContext.Provider>
+          </ChatsContext.Provider>
+        </PastConversionContext.Provider>
       </QueriesContext.Provider>
     </>
   )

@@ -1,3 +1,4 @@
+import { Avatar, Stack } from '@mui/material';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -7,6 +8,8 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import { useState } from 'react';
 import { GiHamburgerMenu } from 'react-icons/gi';
+import SoulAvatar from '../../assets/images/soul-avatar.png';
+import { TbEdit } from 'react-icons/tb';
 
 
 function Navbar({ children }) {
@@ -30,9 +33,23 @@ function Navbar({ children }) {
     };
 
     const drawer = (
-        <div>
-            <Toolbar />
-        </div>
+        <Box width="100%">
+            <Stack direction='row' spacing={1} sx={{
+                p: 1,
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                backgroundColor: "secondary.main"
+            }}>
+                <Avatar src={SoulAvatar} alt="Soul Avatar" sx={{ width: 50, height: 50 }} />
+                <Typography variant='h4'>New Chat</Typography>
+                <TbEdit fontSize={24} />
+            </Stack>
+            <Box sx={{ m: 1, p: 1, backgroundColor: 'secondary.main', borderRadius: 2 }}>
+                <Typography variant='body1' fontWeight={700}>
+                    Past Conversations
+                </Typography>
+            </Box>
+        </Box >
     );
 
     return (

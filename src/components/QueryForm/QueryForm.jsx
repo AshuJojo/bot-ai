@@ -2,7 +2,7 @@ import { Button, Stack, TextField } from "@mui/material";
 import styles from './QueryForm.module.css';
 import { useState } from "react";
 
-const QueryForm = ({ query, setQuery }) => {
+const QueryForm = ({ query, setQuery, handleSave }) => {
     const [question, setQuestion] = useState('');
 
     const handleSubmit = (e) => {
@@ -10,10 +10,6 @@ const QueryForm = ({ query, setQuery }) => {
         console.log('form Submitted', question);
         setQuery({ ...query, question: question });
         setQuestion('');
-    }
-
-    const handleSave = () => {
-
     }
 
     return (

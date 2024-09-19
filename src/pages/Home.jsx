@@ -1,14 +1,13 @@
 import { useContext } from "react"
 
-import { QueriesContext } from "../context/Contexts"
+import { ChatsContext, QueriesContext } from "../context/Contexts"
 import WelcomeScreen from "../components/WelcomeScreen/WelcomeScreen";
 import Chats from "../components/Chats/Chats";
 import { Box } from "@mui/material";
 
-const Home = ({ chats, setChats }) => {
+const Home = () => {
   const { queries } = useContext(QueriesContext);
-
-  console.log('queries', queries)
+  const { chats, setChats } = useContext(ChatsContext);
 
   return (
     <Box sx={{ mx: 2, mb: 10, flexGrow: 1, display: 'flex'}}>
