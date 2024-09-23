@@ -29,6 +29,12 @@ It is an clone of an AI chat bot application with react. It have mock responses 
 * Side drawer is responsive, and upon clicking on past conversations from side drawer, you'll route to the /```past-conversations``` url.
 * In past conversation route, you'll have your previous conversation with rating and feedback and these are sorted in most recent conversation order.
 * You could filter the result with given rating.
+* Past conversations are persisted in local storage, so you don't need to worry about loosing past saved conversation when the broser is closed.
+
+## Trade Offs Made
+
+* Could have made a better design for Past Conversion if I had time.
+* Could have added one more filter so to filter conversation by a date range.
 
 ## Tech Stack
 
