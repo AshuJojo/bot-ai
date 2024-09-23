@@ -1,12 +1,12 @@
+import { ThemeProvider } from '@mui/material'
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import App from './App.jsx'
 import './index.css'
-import { CssBaseline, ThemeProvider } from '@mui/material'
-import theme from './theme.js'
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Home from './pages/Home.jsx'
 import PastConversations from './pages/PastConversations.jsx'
+import theme from './theme.js'
 
 const router = createBrowserRouter([
   {

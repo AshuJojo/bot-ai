@@ -1,8 +1,8 @@
-import { Box, Stack, Typography } from "@mui/material"
-import { useContext } from "react"
-import { PastConversionContext } from "../context/Contexts"
+import { Box, Stack, Typography } from "@mui/material";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
 import ChatHistories from "../components/ChatHistories/ChatHistories";
+import { PastConversionContext } from "../context/Contexts";
 
 const PastConversations = () => {
   const { pastConversations } = useContext(PastConversionContext);

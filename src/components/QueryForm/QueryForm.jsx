@@ -1,13 +1,12 @@
 import { Button, Stack, TextField } from "@mui/material";
-import styles from './QueryForm.module.css';
 import { useState } from "react";
+import styles from './QueryForm.module.css';
 
 const QueryForm = ({ query, setQuery, handleSave }) => {
     const [question, setQuestion] = useState('');
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log('form Submitted', question);
         setQuery({ ...query, question: question });
         setQuestion('');
     }
@@ -15,7 +14,8 @@ const QueryForm = ({ query, setQuery, handleSave }) => {
     return (
         <Stack
             component={'form'}
-            className={styles.container} sx={{
+            className={styles.container} 
+            sx={{
                 width: {
                     xs: '100%',
                     sm: `calc(100% - 240px)`

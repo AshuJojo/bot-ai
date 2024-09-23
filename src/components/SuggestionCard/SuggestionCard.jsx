@@ -1,6 +1,6 @@
-import { Card, CardContent, Typography } from "@mui/material"
-import { useContext } from "react"
-import { QueryContext } from "../../context/Contexts"
+import { Card, CardContent, Typography } from "@mui/material";
+import { useContext } from "react";
+import { QueryContext } from "../../context/Contexts";
 
 const SuggestionCard = ({ suggestion }) => {
     const { query, setQuery } = useContext(QueryContext);

@@ -1,4 +1,4 @@
-import { alpha, Avatar, Card, Rating, Stack, Typography, useTheme } from "@mui/material"
+import { alpha, Avatar, Card, Rating, Stack, Typography, useTheme } from "@mui/material";
 import { useState } from "react";
 import { PiThumbsUpBold } from "react-icons/pi";
 import FeedbackModal from "../FeedbackModal/FeedbackModal";

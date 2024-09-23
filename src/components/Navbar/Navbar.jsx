@@ -8,9 +8,9 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import { useContext, useState } from 'react';
 import { GiHamburgerMenu } from 'react-icons/gi';
-import SoulAvatar from '../../assets/images/soul-avatar.png';
 import { TbEdit } from 'react-icons/tb';
 import { useLocation, useNavigate } from 'react-router-dom';
+import SoulAvatar from '../../assets/images/soul-avatar.png';
 import { ChatsContext } from '../../context/Contexts';
 
 

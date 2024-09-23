@@ -1,17 +1,14 @@
 import { Box, FormControl, InputLabel, MenuItem, Select, Stack, Typography } from "@mui/material";
 import { format, isToday, isYesterday } from "date-fns";
-import HistoryCard from "../HistoryCard/HistoryCard";
 import { useEffect, useState } from "react";
+import HistoryCard from "../HistoryCard/HistoryCard";
 
 const ChatHistories = ({ pastConversations }) => {
     const [filterRating, setFilterRating] = useState(0);
     const [filteredList, setFilteredList] = useState([]);
-    console.log('pastConversations', pastConversations);
 
     const getChatDateTitle = (timestamp) => {
-        console.log('timestamp', timestamp);
         const date = new Date(JSON.parse(`"${timestamp}"`));
-        console.log('date', date);
 
         let dateTitle = '';
         if (isToday(date))
@@ -36,7 +33,7 @@ const ChatHistories = ({ pastConversations }) => {
         setFilterRating(value);
         let data = [...pastConversations];
 
-        data = data.filter((item) => (item.chats[item.chats.length - 1].rating === value));
+        data = data.filter((item) => (item.chats.findIndex(elm => elm.rating === value) !== -1));
 
         setFilteredList(data);
     }

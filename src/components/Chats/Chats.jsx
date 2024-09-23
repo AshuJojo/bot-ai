@@ -1,11 +1,10 @@
 import { Box, Stack } from "@mui/material";
-import ChatCard from "../ChatCard/ChatCard";
+import { format } from "date-fns";
 import soulAvatar from '../../assets/images/soul-avatar.png';
 import userAvatar from '../../assets/images/user-avatar.png';
-import { format } from "date-fns";
+import ChatCard from "../ChatCard/ChatCard";
 
 const Chats = ({ chats, setChats }) => {
-    console.log('chats', chats);
 
     const handleRating = (newValue, idx) => {
         const newChats = [...chats];
@@ -21,7 +20,6 @@ const Chats = ({ chats, setChats }) => {
     const formatDate = (dateJSON) => {
         const date = new Date(JSON.parse(`"${dateJSON}"`));
         const formatedDate = format(date, "h:m a")
-        console.log('date', date)
         return formatedDate;
     }
 

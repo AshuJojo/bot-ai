@@ -1,7 +1,7 @@
-import { Box, Button, Modal, Stack, TextField, Typography, useTheme } from "@mui/material"
+import { Box, Button, Modal, Stack, TextField, Typography, useTheme } from "@mui/material";
 import { useState } from "react";
 import { IoClose } from "react-icons/io5";
-import { TbBulb } from "react-icons/tb"
+import { TbBulb } from "react-icons/tb";
 
 const FeedbackModal = ({ isOpen, handleClose, handleFeedback }) => {
     const theme = useTheme();

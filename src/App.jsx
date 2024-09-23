@@ -18,13 +18,9 @@ function App() {
     response: '',
   });
 
-  console.log('chats', chats);
-  console.log('pastConversations', pastConversations);
-
   const [isMounted, setIsMounted] = useState(false);
 
   const handleSave = () => {
-    console.log('save Conversation');
     const data = [...pastConversations];
 
     const conversations = { chats, timestamp: new Date().toJSON() };

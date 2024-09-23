@@ -1,9 +1,9 @@
-import { useContext } from "react"
+import { useContext } from "react";
 
-import { ChatsContext, QueriesContext } from "../context/Contexts"
-import WelcomeScreen from "../components/WelcomeScreen/WelcomeScreen";
-import Chats from "../components/Chats/Chats";
 import { Box } from "@mui/material";
+import Chats from "../components/Chats/Chats";
+import WelcomeScreen from "../components/WelcomeScreen/WelcomeScreen";
+import { ChatsContext, QueriesContext } from "../context/Contexts";
 
 const Home = () => {
   const { queries } = useContext(QueriesContext);
